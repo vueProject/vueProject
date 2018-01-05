@@ -1,22 +1,20 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <p>
-        <router-link to="/FangBingBing">sss</router-link>
-        <router-link to="/Hello">fff</router-link> 
-    </p>
- -->    <router-view></router-view>
+    <!-- <router-link to="/hello"><img src="./assets/logo.png" /></router-link> -->
+    <!-- <router-view class="header"></router-view> -->
+    <router-view></router-view>
+    <!-- <router-view class="footer" name="footer"></router-view> -->
   </div>
 </template>
 
 <script>
 export default {
-  // name: 'app'
+  name: 'app'
 }
 </script>
 
 <style lang="less">
-@import './style/common';
+// @import './style/common';
 #app {
   width: 100%;
   height: 100%;
