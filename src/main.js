@@ -3,11 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// import VueResource from 'vue-resource'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 import'./style/common.less'
 import $ from 'jquery'
 import '../config/rem.js'
-
+// Vue.prototype.$axios = axios
+// Vue.use(VueResource)
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

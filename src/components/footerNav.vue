@@ -15,17 +15,7 @@
 export default {
     name: "footer",
     data() {
-        // console.log(this.$route.name);
         return {
-            
-            // pathUrl: this.$route.name
-            // date: [
-            //     {text: '考拉看', class: 'navBut navLook', link: 'home'},
-            //     {text: '考拉听', class: 'navBut navListen', link: 'KoalaListen'},
-            //     {text: '考拉学', class: 'navBut navLearn'},
-            //     {text: '我的', class: 'navBut navCenter'},
-            // ],
-            // changeClass: 0
         };
     }
     // methods: {
