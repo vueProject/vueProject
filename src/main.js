@@ -7,7 +7,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import'./style/common.less'
+import './style/common.less'
 import $ from 'jquery'
 import '../config/rem.js'
 // Vue.prototype.$axios = axios
