@@ -83,7 +83,7 @@ router.post('/api/data/createData',(req,res) => {
 
 });
 
-router.get('/api/data/getData', (req,res) => {
+router.post('/api/data/getData', (req,res) => {
   // 通过模型去查找数据库
   const type = req.body.type;
   const dataSort = req.body.dataSort;

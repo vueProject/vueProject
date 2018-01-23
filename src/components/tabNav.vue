@@ -26,12 +26,13 @@
                 <span>不一样的卡梅拉</span>
                 <span>更多>></span>
             </div>
+
             <div class="content">
-                <div class="item">
-                    <img class="photo" src="../assets/content/photo.png"/>
+                <div class="item" v-for="(item,index) in data">
+                    <img class="photo" :src="item.photo"/>
                     <div class="info">
-                        <div class="headline">1.小苹果</div>
-                        <div class="caption">考拉儿歌 播放：12345万</div>
+                        <div class="headline">{{index}}.{{item.title}}</div>
+                        <div class="caption">{{item.type === 1 ? '考拉儿歌' : item.type===2?'考拉故事':'考拉学'}} 播放：{{item.playCoumt}}万</div>
                     </div>
                     <div class="download"></div>
                 </div>
@@ -49,8 +50,31 @@ export default {
             // msg: "Welcome to Your Vue.js App"
             title:["儿歌","故事","绘本","动画片"],
             type: 1,
+            dataSort:0,
+            data:{}
 
         };
+    },
+
+    created(){
+        let params={
+            type:1,
+            dataSort:1
+        }
+        this.$http.post("/api/data/getData", params)
+            .then((response) => {
+                // 响应成功回调
+                if(response.data === "") {
+                    console.log(response)
+                    return;
+                }
+                this.data=response.data;
+                console.log(this.data);
+                // 创建一个账号密码
+            })
+            .catch((reject) => {
+                console.log(reject)
+            });
     },
     mounted(){
         document.getElementsByClassName("title")[0].getElementsByTagName("li")[0].classList.add("active");
@@ -63,22 +87,22 @@ export default {
                 this.$refs.myli[i].classList.remove("active");
             }
             this.$refs.myli[index].classList.add("active");
-            let params = {
-                type : this.type,
-                // dataSort :
-            };
-            this.$http.get('/api/user/getAccount', params)
+            this.dataSort=index+1;
+            let params={
+                type:this.type,
+                dataSort:this.dataSort
+            }
+            // `/api/data/getData&type=${this.type}&dataSort=${this.dataSort}`
+            this.$http.post("/api/data/getData", params)
                 .then((response) => {
                     // 响应成功回调
                     if(response.data === "") {
                         console.log(response)
-                        alert('账号或密码错误');
                         return;
                     }
-                    console.log(response.data);
-                    alert("登陆成功");
+                    this.data=response.data;
+                    console.log(this.data);
                     // 创建一个账号密码
-                    // return this.$http.post('/api/login/createAccount',params);
                 })
                 .catch((reject) => {
                     console.log(reject)
@@ -137,20 +161,25 @@ span {
     font-weight: bold;
 }
 }
+
+
+
+
 .content {
     width: 100%;
     height: 7.8rem;
 .item {
     position: relative;
     width: 100%;
-    height: 0.85rem;
-    border-bottom: 0.02rem solid #f9f9f9;
+    height: 1rem;
+    border-bottom: 0.02rem solid #dddddd;
     text-align: left;
-
+    /*background-color:red;*/
+/**/
 .photo {
     float: left;
     width: 1.13rem;
-    height: 0.68rem;
+    height: 0.85rem;
     border-radius: 0.05rem;
     margin-left: 0.15rem;
     margin-top: 0.07rem;
