@@ -40,7 +40,7 @@ const UserSchema = mongoose.Schema({
 });
 const DateSchema = mongoose.Schema({
     id: {
-        label: '用户id',
+        label: '数据id',
         type: Number,
     },
     photo: {
@@ -113,10 +113,28 @@ const DateSchema = mongoose.Schema({
         type: Date,
     }
 });
+const MyProfileSchema = mongoose.Schema({
+    userId: {
+        label: '用户id',
+        type: Number,
+    },
+    dataId: {
+        label: '收藏id',
+        type: Number,
+    },
+    profileTime: {
+        label: '收藏时间',
+        type: Date,
+    }
+  // userId: 123456 //用户Id
+  // dataId: 123456  // 收藏Id
+  // profileTime: Date  // 收藏时间
+})
 /************** 定义模型Model **************/
 const Models = {
     User : mongoose.model('User',UserSchema),
-    Date : mongoose.model('Date',DateSchema)
+    Date : mongoose.model('Date',DateSchema),
+    MyProfile : mongoose.model('MyProfile',MyProfileSchema),
 }
 
 module.exports = Models;

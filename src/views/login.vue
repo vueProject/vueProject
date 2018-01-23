@@ -21,7 +21,7 @@
               userName : this.userName,
               password : this.password
             };
-        this.$http.post('/api/user/getAccount', params)
+        this.$http.post('/api/data/getData', params)
           .then((response) => {
             // 响应成功回调
             if(response.data === "") {
@@ -37,7 +37,8 @@
           .catch((reject) => {
             console.log(reject)
           });
-        }
+
+      }
       }
     }
 </script>

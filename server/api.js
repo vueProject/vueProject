@@ -12,11 +12,11 @@ router.post('/api/user/createAccount',(req,res) => {
         res.send('账号或密码错误');
         return;
     }
-    const userName = models.User.findOne({userName: req.body.userName});
-    if(userName) {
-        res.send('手机号已存在');
-        return;
-    }
+    // const userName = models.User.findOne({userName: req.body.userName});
+    // if(userName) {
+    //     res.send('手机号已存在');
+    //     return;
+    // }
     let newUser = new models.User({
         userName : req.body.userName,
         password : req.body.password,
@@ -82,5 +82,37 @@ router.post('/api/data/createData',(req,res) => {
     });
 
 });
+
+router.get('/api/data/getData', (req,res) => {
+  // 通过模型去查找数据库
+  const type = req.body.type;
+  const dataSort = req.body.dataSort;
+  // console.log('userName',req.body);
+  models.Date.find({type, dataSort},(err,data) => {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      console.log(data);
+      res.send(data);
+    }
+  })
+});
+// router.get('/api/MyProfile/createProfile', (req,res) => {
+//   // 通过模型去查找数据库
+//   const userId = req.body.type;
+//   const dataSort = req.body.dataSort;
+//   // console.log('userName',req.body);
+//   models.Date.find({type, dataSort},(err,data) => {
+//     if (err) {
+//       console.log(err);
+//       res.send(err);
+//     } else {
+//       console.log(data);
+//       res.send(data);
+//     }
+//   })
+// });
+
 
 module.exports = router;
